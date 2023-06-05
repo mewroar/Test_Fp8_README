@@ -1,11 +1,11 @@
-■Gitan.FixedPoint8とは
+■ Gitan.FixedPoint8とは
 
 Gitan.FixedPoint8は、固定小数点で-92233720368.54775808～92233720368.54775807までの数字を扱うことができます。
 内部にInt64をもつstructで、10進数の小数点を誤差なく扱うことができます。
 実行速度が速いことに重点を置いてUTF8との親和性が高いです。
 
 
-■技術仕様
+■ 技術仕様
 
 ・偶数、奇数判定は速度に重点を置くため％を使用せずに実装しています。
 
@@ -16,7 +16,7 @@ Gitan.FixedPoint8は、固定小数点で-92233720368.54775808～92233720368.547
 ・Gitan.FixedPoint8はuncheckedで動きます、オーバーフローが発生する値でエラーは発生しませんのでご注意ください。
 
 
-■使用方法
+■ 使用方法
 NuGetパッケージ : Gitan.FixedPoint8
 NuGetを使用してFixedPoint8パッケージをインストールします。
 
@@ -108,7 +108,7 @@ ReadFixedPoint8,WriteFixedPoint8の処理はUtf8JsonのNumberConverterを部分�
     }
 
 
-■パフォーマンス
+■ パフォーマンス
 
     static readonly FixedPoint8 fixedPoint8Value = FixedPoint8.FromInnerValue(-1_234_000_000);　//　12.34
     static readonly FixedPoint8 v2 = FixedPoint8.FromInnerValue(200_000_000);　//　2
@@ -219,7 +219,7 @@ FixedPoint8との乗算は遅いので使用を推奨しない
 |    LessThanFixedPoint8 |      0.1953 ns |   0.0167 ns |   0.0139 ns |      0.1911 ns |
 
 
-■Utf8JsonFixedPoint8
+■ Utf8JsonFixedPoint8
 
 public class BenchMark_Serializer
 {
@@ -325,7 +325,6 @@ public class BenchMark_Serializer
     [Benchmark]
     public void WriteFixedPoint8()
     {
-
         var writer = new JsonWriter(sharedBuffer);
         writer.WriteFixedPoint8(new FixedPoint8(-1_234_000_000));
     }
@@ -403,7 +402,7 @@ byte[]でReader,Writer,Deserialize,Serializeの比較
 |       SerializeDecimal | 108.904 ns | 1.2402 ns | 1.0356 ns |
 |   SerializeFixedPoint8 |  45.996 ns | 0.4746 ns | 0.4439 ns |
 
-■Api定義
+■ Api定義
 
 |                 プロパティ|                                 説明|
 | ---------------------- | ----------------------------------- |
