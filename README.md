@@ -1,4 +1,4 @@
-■ **Gitan.FixedPoint8とは**
+■ <sub>**Gitan.FixedPoint8とは**</sub>
 
 Gitan.FixedPoint8は、固定小数点で-92233720368.54775808～92233720368.54775807までの数字を扱うことができます。
 内部にInt64をもつstructで、10進数の小数点を誤差なく扱うことができます。
