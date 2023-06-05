@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Test_Fp8_sk</id>
+    <version>1.0.1</version>
+    <title>Test_Fp8_sk</title>
+    <authors>FixedPoint8</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net7.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Git\AlchemyLab\20230426_FixedPoiint8_Release\FixedPoint8\bin\Release\net7.0\FixedPoint8.dll" target="lib\net7.0\FixedPoint8.dll" />
+  </files>
+</package>

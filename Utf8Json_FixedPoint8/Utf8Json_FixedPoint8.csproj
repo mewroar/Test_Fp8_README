@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <PackageId>Test_Utf8Fp8_sk</PackageId>
+    <Title>Test_Utf8Fp8_sk</Title>
+    <Version>1.0.2</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Utf8Json" Version="1.3.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FixedPoint8\FixedPoint8.csproj" />
+  </ItemGroup>
+
+</Project>

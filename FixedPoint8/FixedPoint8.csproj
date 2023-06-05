@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <Version>1.0.1</Version>
+    <Title>Test_Fp8_sk</Title>
+    <PackageId>Test_Fp8_sk</PackageId>
+  </PropertyGroup>
+
+</Project>

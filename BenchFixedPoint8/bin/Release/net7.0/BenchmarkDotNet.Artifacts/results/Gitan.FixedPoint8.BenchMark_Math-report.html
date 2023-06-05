@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Gitan.FixedPoint8.BenchMark_Math-20230605-102506</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.13.5, OS=Windows 11 (10.0.22621.1702/22H2/2022Update/SunValley2)
+AMD Ryzen 9 5900HS with Radeon Graphics, 1 CPU, 16 logical and 8 physical cores
+.NET SDK=7.0.202
+  [Host]     : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2 [AttachedDebugger]
+  DefaultJob : .NET 7.0.4 (7.0.423.11508), X64 RyuJIT AVX2
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>        Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th>
+</tr>
+</thead><tbody><tr><td>FixedPoint8Round</td><td>1.2365 ns</td><td>0.0467 ns</td><td>0.0480 ns</td><td>1.2397 ns</td>
+</tr><tr><td>MathRoundDecimal</td><td>7.1911 ns</td><td>0.0607 ns</td><td>0.0568 ns</td><td>7.1869 ns</td>
+</tr><tr><td>MathRoundDouble</td><td>0.0109 ns</td><td>0.0142 ns</td><td>0.0180 ns</td><td>0.0000 ns</td>
+</tr><tr><td>FixedPoint8Round2</td><td>2.6201 ns</td><td>0.0693 ns</td><td>0.0925 ns</td><td>2.6187 ns</td>
+</tr><tr><td>MathRound2Decimal</td><td>7.3166 ns</td><td>0.1016 ns</td><td>0.0950 ns</td><td>7.3226 ns</td>
+</tr><tr><td>MathRound2Double</td><td>3.9170 ns</td><td>0.1031 ns</td><td>0.1723 ns</td><td>3.9058 ns</td>
+</tr><tr><td>FixedPoint8Floor</td><td>1.0050 ns</td><td>0.0441 ns</td><td>0.0686 ns</td><td>0.9865 ns</td>
+</tr><tr><td>MathFloorDecimal</td><td>6.1693 ns</td><td>0.0455 ns</td><td>0.0404 ns</td><td>6.1639 ns</td>
+</tr><tr><td>MathFloorDouble</td><td>0.0187 ns</td><td>0.0166 ns</td><td>0.0155 ns</td><td>0.0157 ns</td>
+</tr><tr><td>FixedPoint8Floor2</td><td>1.6501 ns</td><td>0.0429 ns</td><td>0.0358 ns</td><td>1.6661 ns</td>
+</tr><tr><td>MathFloor2Decimal</td><td>29.0062 ns</td><td>0.5975 ns</td><td>0.6641 ns</td><td>29.1964 ns</td>
+</tr><tr><td>MathFloor2Double</td><td>0.0000 ns</td><td>0.0000 ns</td><td>0.0000 ns</td><td>0.0000 ns</td>
+</tr><tr><td>FixedPoint8Truncate</td><td>0.7222 ns</td><td>0.0217 ns</td><td>0.0192 ns</td><td>0.7226 ns</td>
+</tr><tr><td>MathTruncateDecimal</td><td>5.5630 ns</td><td>0.0910 ns</td><td>0.0851 ns</td><td>5.5365 ns</td>
+</tr><tr><td>MathTruncateDouble</td><td>0.0130 ns</td><td>0.0098 ns</td><td>0.0091 ns</td><td>0.0119 ns</td>
+</tr><tr><td>FixedPoint8Truncate2</td><td>1.1542 ns</td><td>0.0479 ns</td><td>0.1110 ns</td><td>1.1711 ns</td>
+</tr><tr><td>MathTruncate2Decimal</td><td>30.2132 ns</td><td>0.5734 ns</td><td>0.5363 ns</td><td>30.1327 ns</td>
+</tr><tr><td>MathTruncate2Double</td><td>0.0001 ns</td><td>0.0004 ns</td><td>0.0007 ns</td><td>0.0000 ns</td>
+</tr><tr><td>FixedPoint8Ceiling</td><td>0.7259 ns</td><td>0.0388 ns</td><td>0.0531 ns</td><td>0.7163 ns</td>
+</tr><tr><td>MathCeilingDecimal</td><td>5.7350 ns</td><td>0.1380 ns</td><td>0.1417 ns</td><td>5.6634 ns</td>
+</tr><tr><td>MathCeilingDouble</td><td>0.0029 ns</td><td>0.0057 ns</td><td>0.0048 ns</td><td>0.0000 ns</td>
+</tr><tr><td>FixedPoint8Ceiling2</td><td>1.3415 ns</td><td>0.0518 ns</td><td>0.1010 ns</td><td>1.3741 ns</td>
+</tr><tr><td>MathCeiling2Decimal</td><td>29.5010 ns</td><td>0.6073 ns</td><td>0.8902 ns</td><td>29.3690 ns</td>
+</tr><tr><td>MathCeiling2Double</td><td>0.0059 ns</td><td>0.0096 ns</td><td>0.0085 ns</td><td>0.0000 ns</td>
+</tr></tbody></table>
+</body>
+</html>
