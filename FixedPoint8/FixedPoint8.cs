@@ -9,8 +9,8 @@ namespace Gitan.FixedPoint8;
 public readonly struct FixedPoint8 : INumber<FixedPoint8>
 {
 
-    public static FixedPoint8 MinValue { get; } = new FixedPoint8(long.MinValue);
     public static FixedPoint8 MaxValue { get; } = new FixedPoint8(long.MaxValue);
+    public static FixedPoint8 MinValue { get; } = new FixedPoint8(long.MinValue);
 
     public const int InnerPower = 100_000_000;
 
