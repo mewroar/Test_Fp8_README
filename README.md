@@ -222,157 +222,158 @@ FixedPoint8との乗算は遅いので使用を推奨しない
 ■Utf8JsonFixedPoint8
 
 public class BenchMark_Serializer
+{ 
+
+/////////////////////////////////////// Reader
+
+static readonly byte[] _sourceInt = "-1234,"u8.ToArray();
+static readonly byte[] _source = "-12.34,"u8.ToArray();
+
+[Benchmark]
+public int ReadInt()
 {
-    /////////////////////////////////////// Reader
+    var reader = new JsonReader(_sourceInt);
+    return reader.ReadInt32();
+}
 
-    static readonly byte[] _sourceInt = "-1234,"u8.ToArray();
-    static readonly byte[] _source = "-12.34,"u8.ToArray();
+[Benchmark]
+public long ReadLong()
+{
+    var reader = new JsonReader(_sourceInt);
+    return reader.ReadInt64();
+}
 
-    [Benchmark]
-    public int ReadInt()
-    {
-        var reader = new JsonReader(_sourceInt);
-        return reader.ReadInt32();
-    }
+[Benchmark]
+public double ReadDouble()
+{
+    var reader = new JsonReader(_source);
+    return reader.ReadDouble();
+}
 
-    [Benchmark]
-    public long ReadLong()
-    {
-        var reader = new JsonReader(_sourceInt);
-        return reader.ReadInt64();
-    }
-
-    [Benchmark]
-    public double ReadDouble()
-    {
-        var reader = new JsonReader(_source);
-        return reader.ReadDouble();
-    }
-
-    [Benchmark]
-    public FixedPoint8 ReadFixedPoint8()
-    {
-        var reader = new JsonReader(_source);
-        return reader.ReadFixedPoint8();
-    }
+[Benchmark]
+public FixedPoint8 ReadFixedPoint8()
+{
+    var reader = new JsonReader(_source);
+    return reader.ReadFixedPoint8();
+}
 
 
-    /////////////////////////////////////// Deserialize
-    ///
-    static readonly byte[] _jsonInt = """{"Value":-1234}"""u8.ToArray();
-    static readonly byte[] _json = """{"Value":-12.34}"""u8.ToArray();
+/////////////////////////////////////// Deserialize
+///
+static readonly byte[] _jsonInt = """{"Value":-1234}"""u8.ToArray();
+static readonly byte[] _json = """{"Value":-12.34}"""u8.ToArray();
 
-    [Benchmark]
-    public int DeserializeInt()
-    {
-        var obj = JsonSerializer.Deserialize<IntClass>(_jsonInt);
-        return obj.Value;
-    }
+[Benchmark]
+public int DeserializeInt()
+{
+    var obj = JsonSerializer.Deserialize<IntClass>(_jsonInt);
+    return obj.Value;
+}
 
-    [Benchmark]
-    public long DeserializeLong()
-    {
-        var obj = JsonSerializer.Deserialize<LongClass>(_jsonInt);
-        return obj.Value;
-    }
-    
-    [Benchmark]
-    public double DeserializeDouble()
-    {
-        var obj = JsonSerializer.Deserialize<DoubleClass>(_json);
-        return obj.Value;
-    }    
+[Benchmark]
+public long DeserializeLong()
+{
+    var obj = JsonSerializer.Deserialize<LongClass>(_jsonInt);
+    return obj.Value;
+}
 
-    [Benchmark]
-    public decimal DeserializeDecimal()
-    {
-        var obj = JsonSerializer.Deserialize<DecimalClass>(_json);
-        return obj.Value;
-    }
+[Benchmark]
+public double DeserializeDouble()
+{
+    var obj = JsonSerializer.Deserialize<DoubleClass>(_json);
+    return obj.Value;
+}    
 
-    [Benchmark]
-    public FixedPoint8 DeserializeFixedPoint8()
-    {
-        var obj = JsonSerializer.Deserialize<FixedPoint8Class>(_json);
-        return obj.Value;
-    }
+[Benchmark]
+public decimal DeserializeDecimal()
+{
+    var obj = JsonSerializer.Deserialize<DecimalClass>(_json);
+    return obj.Value;
+}
 
-    /////////////////////////////////////// Writer
+[Benchmark]
+public FixedPoint8 DeserializeFixedPoint8()
+{
+    var obj = JsonSerializer.Deserialize<FixedPoint8Class>(_json);
+    return obj.Value;
+}
 
-    readonly byte[] sharedBuffer = new byte[65535];
+/////////////////////////////////////// Writer
 
-    [Benchmark]
-    public void WriteInt()
-    {
-        var writer = new JsonWriter(sharedBuffer);        
-        writer.WriteInt32(-1234);
-    }  
-    
-    [Benchmark]
-    public void WriteLong()
-    {
-        var writer = new JsonWriter(sharedBuffer);        
-        writer.WriteInt64(-1234);
-    } 
-    
-    [Benchmark]
-    public void WriteDouble()
-    {
-        var writer = new JsonWriter(sharedBuffer);        
-        writer.WriteDouble(-12.34);
-    }
+readonly byte[] sharedBuffer = new byte[65535];
 
-    [Benchmark]
-    public void WriteFixedPoint8()
-    {
+[Benchmark]
+public void WriteInt()
+{
+    var writer = new JsonWriter(sharedBuffer);        
+    writer.WriteInt32(-1234);
+}  
 
-        var writer = new JsonWriter(sharedBuffer);
-        writer.WriteFixedPoint8(new FixedPoint8(-1_234_000_000));
-    }
+[Benchmark]
+public void WriteLong()
+{
+    var writer = new JsonWriter(sharedBuffer);        
+    writer.WriteInt64(-1234);
+} 
+
+[Benchmark]
+public void WriteDouble()
+{
+    var writer = new JsonWriter(sharedBuffer);        
+    writer.WriteDouble(-12.34);
+}
+
+[Benchmark]
+public void WriteFixedPoint8()
+{
+
+    var writer = new JsonWriter(sharedBuffer);
+    writer.WriteFixedPoint8(new FixedPoint8(-1_234_000_000));
+}
 
 
-    /////////////////////////////////////// Serialize
-    
-    [Benchmark]
-    public byte[] SerializeInt()
-    {
-        var test = IntClass.GetSample();
-        var result = JsonSerializer.Serialize<IntClass>(test);
-        return result;
-    } 
-     
-    [Benchmark]
-    public byte[] SerializeLong()
-    {
-        var test = LongClass.GetSample();
-        var result = JsonSerializer.Serialize<LongClass>(test);
-        return result;
-    } 
+/////////////////////////////////////// Serialize
 
-    [Benchmark]
-    public byte[] SerializeDouble()
-    {
-        var test = DoubleClass.GetSample();
-        var result = JsonSerializer.Serialize<DoubleClass>(test);
-        return result;
-    } 
+[Benchmark]
+public byte[] SerializeInt()
+{
+    var test = IntClass.GetSample();
+    var result = JsonSerializer.Serialize<IntClass>(test);
+    return result;
+} 
+ 
+[Benchmark]
+public byte[] SerializeLong()
+{
+    var test = LongClass.GetSample();
+    var result = JsonSerializer.Serialize<LongClass>(test);
+    return result;
+} 
 
-    [Benchmark]
-    public byte[] SerializeDecimal()
-    {
-        var test = DecimalClass.GetSample();
-        var result = JsonSerializer.Serialize<DecimalClass>(test);
-        return result;
-    } 
-    
-    [Benchmark]
-    public byte[] SerializeFixedPoint8()
-    {
-        var test = FixedPoint8Class.GetSample();
-        var result = JsonSerializer.Serialize<FixedPoint8Class>(test);
-        return result;
+[Benchmark]
+public byte[] SerializeDouble()
+{
+    var test = DoubleClass.GetSample();
+    var result = JsonSerializer.Serialize<DoubleClass>(test);
+    return result;
+} 
 
-    }
+[Benchmark]
+public byte[] SerializeDecimal()
+{
+    var test = DecimalClass.GetSample();
+    var result = JsonSerializer.Serialize<DecimalClass>(test);
+    return result;
+} 
+
+[Benchmark]
+public byte[] SerializeFixedPoint8()
+{
+    var test = FixedPoint8Class.GetSample();
+    var result = JsonSerializer.Serialize<FixedPoint8Class>(test);
+    return result;
+
+}
 
 
 Reader,WriterはDoubleと比較して90%速い
