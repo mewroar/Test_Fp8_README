@@ -418,6 +418,7 @@ byte[]でReader,Writer,Deserialize,Serializeの比較
 ■Api定義
 
 |                 プロパティ|                                 説明|
+| ---------------------- | ----------------------------------- |
 |MaxValue                |longの可能な最大値を返します                         |
 |MinValue                |longの可能な最小値を返します                         |
 |Zero                    |FixedPoint8の1を返します                               |
