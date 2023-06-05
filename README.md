@@ -17,6 +17,7 @@ Gitan.FixedPoint8は、固定小数点で-92233720368.54775808～92233720368.547
 
 
 ■ **使用方法**
+
 NuGetパッケージ : Gitan.FixedPoint8
 NuGetを使用してFixedPoint8パッケージをインストールします。
 
@@ -220,6 +221,7 @@ FixedPoint8との乗算は遅いので使用を推奨しない
 
 
 ■ **Utf8JsonFixedPoint8**
+
 
 public class BenchMark_Serializer
 {
