@@ -7,13 +7,10 @@ Gitan.FixedPoint8は、固定小数点で-92233720368.54775808～92233720368.547
 
 ■ **技術仕様**
 
-・偶数、奇数判定は速度に重点を置くため％を使用せずに実装しています。
-
-・速度最適化未実施（速度はでないので使用の際はご注意ください）
-　　FixedPoint8同士の乗算、除算
-　　stringへの変換
-
-・Gitan.FixedPoint8はuncheckedで動きます、オーバーフローが発生する値でエラーは発生しませんのでご注意ください。
+・ 偶数、奇数判定は速度に重点を置くため％を使用せずに実装しています。
+・ FixedPoint8同士の乗算、除算（速度最適化未実施）
+・ stringへの変換（速度最適化未実施）
+・ Gitan.FixedPoint8はuncheckedで動きます、オーバーフローが発生する値でエラーは発生しませんのでご注意ください。
 
 
 ■ **使用方法**
@@ -406,10 +403,26 @@ byte[]でReader,Writer,Deserialize,Serializeの比較
 
 |                 プロパティ|                                 説明|
 | ---------------------- | ----------------------------------- |
-|MaxValue                |longの可能な最大値をFixedPoint8で返します                         |
-|MinValue                |longの可能な最小値をFixedPoint8で返します                         |
-|Zero                    |FixedPoint8の0を返します                               |
-|One                     |FixedPoint8の1を返します                               |
+|MaxValue                |longの可能な最大値をFixedPoint8で返します |
+|MinValue                |longの可能な最小値をFixedPoint8で返します |
+|Zero                    |FixedPoint8の0を返します                |
+|One                     |FixedPoint8の1を返します                |
+
+
+|キャスト(FixedPoint8⇔各数値型)| 
+| ------------------------- |
+|sbyte                      |
+|byte                       |
+|short                      |
+|ushort                     |
+|int                        |
+|uint                       |
+|long                       |
+|ulong                      |
+|float                      |
+|double                     |
+|decimal                    |
+
 
 
 |                                                                                               メソッド|                                                                                  説明|
