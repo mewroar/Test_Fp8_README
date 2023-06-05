@@ -415,4 +415,31 @@ byte[]でReader,Writer,Deserialize,Serializeの比較
 |       SerializeDecimal | 108.904 ns | 1.2402 ns | 1.0356 ns |
 |   SerializeFixedPoint8 |  45.996 ns | 0.4746 ns | 0.4439 ns |
 
+■Api定義
+
+|                 プロパティ|                                 説明|
+|MaxValue                |longの可能な最大値を返します                         |
+|MinValue                |longの可能な最小値を返します                         |
+|Zero                    |FixedPoint8の1を返します                               |
+|One                     |longの可能な最小値を返します                         |
+|MinValue                |longの可能な最小値を返します                         |
+|MinValue                |longの可能な最小値を返します                         |
+|MinValue                |longの可能な最小値を返します                         |
+
+
+
+
+|MinValue                |longの可能な最小値を返します                         |
+|MinValue                |longの可能な最小値を返します                         |
+|MinValue                |longの可能な最小値を返します                         |
+|MinValue                |longの可能な最小値を返します                         |
+|MinValue                |longの可能な最小値を返します                         |
+|MinValue                |longの可能な最小値を返します                         |
+|MinValue                |longの可能な最小値を返します                         |
+|MinValue                |longの可能な最小値を返します                         |
+|MinValue                |longの可能な最小値を返します                         |
+|MinValue                |longの可能な最小値を返します                         |
+|MinValue                |longの可能な最小値を返します                         |
+|MinValue                |longの可能な最小値を返します                         |
+|MinValue                |longの可能な最小値を返します                         |
 
