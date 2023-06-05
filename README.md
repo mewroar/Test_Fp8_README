@@ -1,6 +1,3 @@
-README
-
-
 ■Gitan.FixedPoint8とは
 
 Gitan.FixedPoint8は、固定小数点で-92233720368.54775808～92233720368.54775807までの数字を扱うことができます。
@@ -410,8 +407,8 @@ byte[]でReader,Writer,Deserialize,Serializeの比較
 
 |                 プロパティ|                                 説明|
 | ---------------------- | ----------------------------------- |
-|MaxValue                |longの可能な最大値を返します                         |
-|MinValue                |longの可能な最小値を返します                         |
+|MaxValue                |longの可能な最大値をFixedPoint8で返します                         |
+|MinValue                |longの可能な最小値をFixedPoint8で返します                         |
 |Zero                    |FixedPoint8の0を返します                               |
 |One                     |FixedPoint8の1を返します                               |
 
