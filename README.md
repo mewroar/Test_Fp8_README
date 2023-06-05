@@ -35,7 +35,7 @@ NuGetを使用してFixedPoint8パッケージをインストールします。
         var sub = v1 - v2;
         var mul = v1 * v2;
         var div = v1 / v2;
-　　｝
+    }
 
 
 NuGetパッケージ : Gitan.Utf8Json_FixedPoint8
