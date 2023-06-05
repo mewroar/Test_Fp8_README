@@ -223,6 +223,7 @@ FixedPoint8との乗算は遅いので使用を推奨しない
 
 public class BenchMark_Serializer
 {
+
     /////////////////////////////////////// Reader
     ///
     static readonly byte[] _sourceInt = "-1234,"u8.ToArray();
