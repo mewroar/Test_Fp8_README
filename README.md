@@ -412,27 +412,66 @@ byte[]でReader,Writer,Deserialize,Serializeの比較
 | ---------------------- | ----------------------------------- |
 |MaxValue                |longの可能な最大値を返します                         |
 |MinValue                |longの可能な最小値を返します                         |
-|Zero                    |FixedPoint8の1を返します                               |
-|One                     |longの可能な最小値を返します                         |
-|MinValue                |longの可能な最小値を返します                         |
-|MinValue                |longの可能な最小値を返します                         |
-|MinValue                |longの可能な最小値を返します                         |
-
+|Zero                    |FixedPoint8の0を返します                               |
+|One                     |FixedPoint8の1を返します                               |
 
 
 |                    メソッド|                                 説明|
 | ---------------------- | ----------------------------------- |
-|MinValue                |longの可能な最小値を返します                         |
-|MinValue                |longの可能な最小値を返します                         |
-|MinValue                |longの可能な最小値を返します                         |
-|MinValue                |longの可能な最小値を返します                         |
-|MinValue                |longの可能な最小値を返します                         |
-|MinValue                |longの可能な最小値を返します                         |
-|MinValue                |longの可能な最小値を返します                         |
-|MinValue                |longの可能な最小値を返します                         |
-|MinValue                |longの可能な最小値を返します                         |
-|MinValue                |longの可能な最小値を返します                         |
-|MinValue                |longの可能な最小値を返します                         |
-|MinValue                |longの可能な最小値を返します                         |
-|MinValue                |longの可能な最小値を返します                         |
+|FromInnerValue(long)    |longの可能な最小値を返します                         |
+|FromDouble(double)      |longの可能な最小値を返します                         |
+|FromDecimal(decimal)    |longの可能な最小値を返します                         |
+|Parse(string)                |longの可能な最小値を返します                         |
+|Parse(ReadOnlySpan<char>)                |longの可能な最小値を返します                         |
+|Parse(ReadOnlySpan<byte>)                |longの可能な最小値を返します                         |
+|TryParse([NotNullWhen(true)] string?, out FixedPoint8)                |longの可能な最小値を返します                         |
+|TryParse(ReadOnlySpan<char>, out FixedPoint8)                |longの可能な最小値を返します                         |
+|TryParse(ReadOnlySpan<byte>, out FixedPoint8)                |longの可能な最小値を返します                         |
+|ToString()                |longの可能な最小値を返します                         |
+|ToUtf8()                |longの可能な最小値を返します                         |
 
+|Equals(object?)                |longの可能な最小値を返します                         |
+|Equals(FixedPoint8)                |longの可能な最小値を返します                         |
+|GetHashCode()                |longの可能な最小値を返します                         |
+|CompareTo(object?)                |longの可能な最小値を返します                         |
+|CompareTo(FixedPoint8)                |longの可能な最小値を返します                         |
+|Abs(FixedPoint8)                |longの可能な最小値を返します                         |
+|IsCanonical(FixedPoint8)                |longの可能な最小値を返します                         |
+|IsComplexNumber(FixedPoint8)                |longの可能な最小値を返します                         |
+|IsEvenInteger(FixedPoint8)                |longの可能な最小値を返します                         |
+|IsFinite(FixedPoint8)                |longの可能な最小値を返します                         |
+|IsImaginaryNumber(FixedPoint8)                |longの可能な最小値を返します                         |
+|IsInfinity(FixedPoint8)                |longの可能な最小値を返します                         |
+|IsInteger(FixedPoint8)                |longの可能な最小値を返します                         |
+|IsNaN(FixedPoint8)                |longの可能な最小値を返します                         |
+|IsNegative(FixedPoint8)               |longの可能な最小値を返します                         |
+|IsNegativeInfinity(FixedPoint8)                |longの可能な最小値を返します                         |
+|IsNormal(FixedPoint8)                |longの可能な最小値を返します                         |
+|IsOddInteger(FixedPoint8)               |longの可能な最小値を返します                         |
+|IsPositive(FixedPoint8)                |longの可能な最小値を返します                         |
+|IsPositiveInfinity(FixedPoint8)               |longの可能な最小値を返します                         |
+|IsRealNumber(FixedPoint8)                |longの可能な最小値を返します                         |
+|IsSubnormal(FixedPoint8)                |longの可能な最小値を返します                         |
+|IsZero(FixedPoint8)            |longの可能な最小値を返します                         |
+|MaxMagnitude(FixedPoint8, FixedPoint8)                |longの可能な最小値を返します                         |
+|MaxMagnitudeNumber(FixedPoint8, FixedPoint8)               |longの可能な最小値を返します                         |
+|MinMagnitude(FixedPoint8, FixedPoint8)               |longの可能な最小値を返します                         |
+|MinMagnitudeNumber(FixedPoint8, FixedPoint8)                |longの可能な最小値を返します                         |
+|Parse(ReadOnlySpan<char>, NumberStyles, IFormatProvider?)                |longの可能な最小値を返します                         |
+|Parse(string, NumberStyles, IFormatProvider?)               |longの可能な最小値を返します                         |
+|TryParse(ReadOnlySpan<char>, NumberStyles, IFormatProvider?, [MaybeNullWhen(false)] out FixedPoint8)                |longの可能な最小値を返します                         |
+|TryParse([NotNullWhen(true)] string?, NumberStyles, IFormatProvider?, [MaybeNullWhen(false)] out FixedPoint8)               |longの可能な最小値を返します                         |
+|TryFormat(Span<char> , out int, ReadOnlySpan<char>, IFormatProvider?)               |longの可能な最小値を返します                         |
+|ToString(string?, IFormatProvider?)                |longの可能な最小値を返します                         |
+|Parse(ReadOnlySpan<char>, IFormatProvider?)                |longの可能な最小値を返します                         |
+|TryParse(ReadOnlySpan<char>, IFormatProvider?, [MaybeNullWhen(false)] out FixedPoint8)                |longの可能な最小値を返します                         |
+|Parse(string, IFormatProvider?)              |longの可能な最小値を返します                         |
+|TryParse([NotNullWhen(true)] string?, IFormatProvider?, [MaybeNullWhen(false)] out FixedPoint8)                |longの可能な最小値を返します                         |
+|Round()                |longの可能な最小値を返します                         |
+|Round(int)                |longの可能な最小値を返します                         |
+|Floor()                |longの可能な最小値を返します                         |
+|Floor(int)               |longの可能な最小値を返します                         |
+|Truncate()                |longの可能な最小値を返します                         |
+|Truncate(int)               |longの可能な最小値を返します                         |
+|Ceiling()                |longの可能な最小値を返します                         |
+|Ceiling(int)              |longの可能な最小値を返します                         |
