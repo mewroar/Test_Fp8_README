@@ -223,7 +223,6 @@ FixedPoint8との乗算は遅いので使用を推奨しない
 
 public class BenchMark_Serializer
 {
-
     /////////////////////////////////////// Reader
     ///
     static readonly byte[] _sourceInt = "-1234,"u8.ToArray();
@@ -276,13 +275,13 @@ public class BenchMark_Serializer
         var obj = JsonSerializer.Deserialize<LongClass>(_jsonInt);
         return obj.Value;
     }
-    
+
     [Benchmark]
     public double DeserializeDouble()
     {
         var obj = JsonSerializer.Deserialize<DoubleClass>(_json);
         return obj.Value;
-    }    
+    }
 
     [Benchmark]
     public decimal DeserializeDecimal()
@@ -305,21 +304,21 @@ public class BenchMark_Serializer
     [Benchmark]
     public void WriteInt()
     {
-        var writer = new JsonWriter(sharedBuffer);        
+        var writer = new JsonWriter(sharedBuffer);
         writer.WriteInt32(-1234);
-    }  
-    
+    }
+
     [Benchmark]
     public void WriteLong()
     {
-        var writer = new JsonWriter(sharedBuffer);        
+        var writer = new JsonWriter(sharedBuffer);
         writer.WriteInt64(-1234);
-    } 
-    
+    }
+
     [Benchmark]
     public void WriteDouble()
     {
-        var writer = new JsonWriter(sharedBuffer);        
+        var writer = new JsonWriter(sharedBuffer);
         writer.WriteDouble(-12.34);
     }
 
@@ -333,22 +332,22 @@ public class BenchMark_Serializer
 
 
     /////////////////////////////////////// Serialize
-    
+
     [Benchmark]
     public byte[] SerializeInt()
     {
         var test = IntClass.GetSample();
         var result = JsonSerializer.Serialize<IntClass>(test);
         return result;
-    } 
-     
+    }
+
     [Benchmark]
     public byte[] SerializeLong()
     {
         var test = LongClass.GetSample();
         var result = JsonSerializer.Serialize<LongClass>(test);
         return result;
-    } 
+    }
 
     [Benchmark]
     public byte[] SerializeDouble()
@@ -356,7 +355,7 @@ public class BenchMark_Serializer
         var test = DoubleClass.GetSample();
         var result = JsonSerializer.Serialize<DoubleClass>(test);
         return result;
-    } 
+    }
 
     [Benchmark]
     public byte[] SerializeDecimal()
@@ -364,8 +363,8 @@ public class BenchMark_Serializer
         var test = DecimalClass.GetSample();
         var result = JsonSerializer.Serialize<DecimalClass>(test);
         return result;
-    } 
-    
+    }
+
     [Benchmark]
     public byte[] SerializeFixedPoint8()
     {
@@ -373,7 +372,8 @@ public class BenchMark_Serializer
         var result = JsonSerializer.Serialize<FixedPoint8Class>(test);
         return result;
     }
-｝
+}
+
 
 Reader,WriterはDoubleと比較して90%速い
 Deserialize,SerializeはDouble,Decimalと比較して55%～60%速い
