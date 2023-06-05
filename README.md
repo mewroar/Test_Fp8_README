@@ -25,8 +25,8 @@ NuGetを使用してFixedPoint8パッケージをインストールします。
 
     using Gitan.FixedPoint8;
 
-     public void fp8Test()       
-  　{
+    public void fp8Test()       
+    {
         var v1 = FixedPoint8.FromDouble(12.34);        
         var v2 = FixedPoint8.FromDecimal(12.34m);
         //内部的には、Int64の1234000000となる。
