@@ -373,7 +373,7 @@ public class BenchMark_Serializer
         var result = JsonSerializer.Serialize<FixedPoint8Class>(test);
         return result;
     }
-
+｝
 
 Reader,WriterはDoubleと比較して90%速い
 Deserialize,SerializeはDouble,Decimalと比較して55%～60%速い
