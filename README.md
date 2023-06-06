@@ -407,6 +407,7 @@ byte[]でReader,Writer,Deserialize,Serializeの比較
 |MinValue                |longの可能な最小値をFixedPoint8で返します |
 |Zero                    |FixedPoint8の0を返します                |
 |One                     |FixedPoint8の1を返します                |
+|Radix                   |基数として10を返します                        |
 |AdditiveIdentity        |FixedPoint8の0を返します                |
 |MultiplicativeIdentity  |FixedPoint8の1を返します                |
 
