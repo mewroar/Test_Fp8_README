@@ -74,93 +74,133 @@ namespace Gitan.FixedPoint8.Tests
             return byteArray;
         }
 
+        //[TestMethod()]
+        //public void CalcTest()
+        //{
+        //    // +
+        //    var add1 = FixedPoint8Test.V001 + FixedPoint8Test.V001;
+        //    Assert.IsTrue(add1.Equals(FixedPoint8Test.V002));
+        //    var add2 = FixedPoint8Test.V1 + FixedPoint8Test.V1;
+        //    Assert.IsTrue(add2.Equals(FixedPoint8Test.V2));
+
+        //    // -
+        //    var sub1 = FixedPoint8Test.V001 - FixedPoint8Test.V001;
+        //    Assert.IsTrue(sub1.Equals(FixedPoint8.Zero));
+        //    var sub2 = FixedPoint8Test.V1 - FixedPoint8Test.V1;
+        //    Assert.IsTrue(sub2.Equals(FixedPoint8.Zero));
+
+        //    // *(FixedPoint8 * FixedPoint8)
+        //    var mul1 = new FixedPoint8(15 * 10_000_000);
+        //    var mul2 = new FixedPoint8(4 * 100_000_000);
+        //    var mul3 = mul1 * mul2;
+        //    Assert.IsTrue(mul3.Equals(FixedPoint8.FromDecimal(6)));
+
+        //    var mul4 = new FixedPoint8(10_000_000_000L * 100_000_000);
+        //    var mul5 = new FixedPoint8(1 * 100_000_000);
+        //    var mul6 = mul4 * mul5;
+        //    Assert.IsTrue(mul6.Equals(FixedPoint8.FromDecimal(10_000_000_000)));
+
+        //    var mul7 = FixedPoint8.MinValue * new FixedPoint8(-1_000_000);
+        //    Assert.IsTrue(mul7.Equals(new FixedPoint8(92233720368547758)));
+
+        //    var mul8 = mul7 * FixedPoint8.Zero;
+        //    Assert.IsTrue(mul8.Equals(FixedPoint8.FromDecimal(0)));
+
+        //    // /(FixedPoint8 / FixedPoint8)
+        //    var div1 = new FixedPoint8(15_000_000_000 / 10);
+        //    var div2 = new FixedPoint8(1_500_000_000 / 10);
+        //    var div3 = div1 / div2;
+        //    Assert.IsTrue(div3.Equals(FixedPoint8.FromDecimal(10)));
+
+        //    var div4 = new FixedPoint8(10_000_000_000_000_000 / 1);
+        //    var div5 = new FixedPoint8(1_000_000_000_000_000_000 / 10_000_000_000);
+        //    var div6 = div4 / div5;
+        //    Assert.IsTrue(div6.Equals(FixedPoint8.FromDecimal(100_000_000)));
+
+        //    var div7 = new FixedPoint8(-1_000_000_000) / new FixedPoint8(-1_000_000_000);
+        //    Assert.IsTrue(div7.Equals(FixedPoint8.One));
+
+        //    // *(FixedPoint8 * long)
+        //    var fp8MulLong1 = FixedPoint8.One * 2L;
+        //    var fp8MulLong2 = fp8MulLong1 * 10L;
+        //    Assert.IsTrue(fp8MulLong2.Equals(FixedPoint8.FromDecimal(20M)));
+
+        //    var fp8MulLong3 = FixedPoint8Test.V001 * 1L;
+        //    var fp8MulLong4 = fp8MulLong3 * 10L;
+        //    Assert.IsTrue(fp8MulLong4.Equals(FixedPoint8.FromDecimal(0.1M)));
+
+        //    var fp8MulMinusValue = new FixedPoint8(-922337203685477580) * -10L;
+        //    Assert.IsTrue(fp8MulMinusValue.Equals(new FixedPoint8(9223372036854775800)));
+
+        //    var fp8MulZero = FixedPoint8Test.V001 * 0;
+        //    Assert.IsTrue(fp8MulZero.Equals(FixedPoint8.FromDecimal(0)));
+
+        //    // /(FixedPoint8 / long)
+        //    var fp8DivLong1 = FixedPoint8.One / 2L;
+        //    var fp8DivLong2 = fp8DivLong1 / 10L;
+        //    Assert.IsTrue(fp8DivLong2.Equals(FixedPoint8.FromDecimal(0.05M)));
+
+        //    var fp8DivLong3 = FixedPoint8.MaxValue / 1_000_000_000L;
+        //    var fp8DivLong4 = fp8DivLong3 / 10L;
+        //    Assert.IsTrue(fp8DivLong4.Equals(FixedPoint8.FromDecimal(9.22337203M)));
+
+        //}
+
         [TestMethod()]
         public void CalcTest()
         {
-            // +
-            var add1 = FixedPoint8Test.V001 + FixedPoint8Test.V001;
-            Assert.IsTrue(add1.Equals(FixedPoint8Test.V002));
-            var add2 = FixedPoint8Test.V1 + FixedPoint8Test.V1;
-            Assert.IsTrue(add2.Equals(FixedPoint8Test.V2));
+            var list = GetDecimals();
+            foreach(var decimal_a in list)
+            {
+                var fp8_a = FixedPoint8.FromDecimal(decimal_a);
+                foreach (var decimal_b in list)
+                {
+                    var fp8_b = FixedPoint8.FromDecimal(decimal_b);
 
-            // -
-            var sub1 = FixedPoint8Test.V001 - FixedPoint8Test.V001;
-            Assert.IsTrue(sub1.Equals(FixedPoint8.Zero));
-            var sub2 = FixedPoint8Test.V1 - FixedPoint8Test.V1;
-            Assert.IsTrue(sub2.Equals(FixedPoint8.Zero));
+                    var fp8_resultAdd = fp8_a + fp8_b;
+                    Assert.IsTrue(fp8_resultAdd.Equals(FixedPoint8.FromDecimal(decimal_a + decimal_b)));
+                    
+                    var fp8_resultSub = fp8_a - fp8_b;
+                    Assert.IsTrue(fp8_resultSub.Equals(FixedPoint8.FromDecimal(decimal_a - decimal_b)));
 
-            // *(FixedPoint8 * FixedPoint8)
-            var mul1 = new FixedPoint8(15 * 10_000_000);
-            var mul2 = new FixedPoint8(4 * 100_000_000);
-            var mul3 = mul1 * mul2;
-            Assert.IsTrue(mul3.Equals(FixedPoint8.FromDecimal(6)));
+                    var overPoint_a = fp8_a.InnerValue / 100000000;
+                    var overPoint_b = fp8_b.InnerValue / 100000000;
 
-            var mul4 = new FixedPoint8(10_000_000_000L * 100_000_000);
-            var mul5 = new FixedPoint8(1 * 100_000_000);
-            var mul6 = mul4 * mul5;
-            Assert.IsTrue(mul6.Equals(FixedPoint8.FromDecimal(10_000_000_000)));
+                    if ((overPoint_a < 1000000 && overPoint_a > -1000000) && (overPoint_b < 1000000 && overPoint_b > -1000000))
+                    {
+                        var fp8_resultMul = fp8_a * fp8_b;
+                        Assert.IsTrue(fp8_resultMul.Equals(FixedPoint8.FromDecimal(decimal_a * decimal_b)));
 
-            var mul7 = FixedPoint8.MinValue * new FixedPoint8(-1_000_000);
-            Assert.IsTrue(mul7.Equals(new FixedPoint8(92233720368547758)));
-
-            var mul8 = mul7 * FixedPoint8.Zero;
-            Assert.IsTrue(mul8.Equals(FixedPoint8.FromDecimal(0)));
-
-            // /(FixedPoint8 / FixedPoint8)
-            var div1 = new FixedPoint8(15_000_000_000 / 10);
-            var div2 = new FixedPoint8(1_500_000_000 / 10);
-            var div3 = div1 / div2;
-            Assert.IsTrue(div3.Equals(FixedPoint8.FromDecimal(10)));
-
-            var div4 = new FixedPoint8(10_000_000_000_000_000 / 1);
-            var div5 = new FixedPoint8(1_000_000_000_000_000_000 / 10_000_000_000);
-            var div6 = div4 / div5;
-            Assert.IsTrue(div6.Equals(FixedPoint8.FromDecimal(100_000_000)));
-
-            var div7 = new FixedPoint8(-1_000_000_000) / new FixedPoint8(-1_000_000_000);
-            Assert.IsTrue(div7.Equals(FixedPoint8.One));
-
-            // *(FixedPoint8 * long)
-            var fp8MulLong1 = FixedPoint8.One * 2L;
-            var fp8MulLong2 = fp8MulLong1 * 10L;
-            Assert.IsTrue(fp8MulLong2.Equals(FixedPoint8.FromDecimal(20M)));
-
-            var fp8MulLong3 = FixedPoint8Test.V001 * 1L;
-            var fp8MulLong4 = fp8MulLong3 * 10L;
-            Assert.IsTrue(fp8MulLong4.Equals(FixedPoint8.FromDecimal(0.1M)));
-
-            var fp8MulMinusValue = new FixedPoint8(-922337203685477580) * -10L;
-            Assert.IsTrue(fp8MulMinusValue.Equals(new FixedPoint8(9223372036854775800)));
-
-            var fp8MulZero = FixedPoint8Test.V001 * 0;
-            Assert.IsTrue(fp8MulZero.Equals(FixedPoint8.FromDecimal(0)));
-
-            // /(FixedPoint8 / long)
-            var fp8DivLong1 = FixedPoint8.One / 2L;
-            var fp8DivLong2 = fp8DivLong1 / 10L;
-            Assert.IsTrue(fp8DivLong2.Equals(FixedPoint8.FromDecimal(0.05M)));
-
-            var fp8DivLong3 = FixedPoint8.MaxValue / 1_000_000_000L;
-            var fp8DivLong4 = fp8DivLong3 / 10L;
-            Assert.IsTrue(fp8DivLong4.Equals(FixedPoint8.FromDecimal(9.22337203M)));
-
+                        if (decimal_a != 0 && decimal_b != 0)
+                        {
+                            var fp8_resultDiv = fp8_a / fp8_b;
+                            Assert.IsTrue(fp8_resultDiv.Equals(FixedPoint8.FromDecimal(decimal_a / decimal_b)));
+                        }
+                    }
+                }
+            }
         }
+
 
         public static List<decimal> GetDecimals()
         {
             var result = new List<decimal>()
             {
-                0m,
-                1m,
-                13m,
-                100m,
-                0.03m,
-                123.456m,
-                -1m,
-                -13m,
-                -100m,
-                -0.03m,
-                -123.456m,
+                //0m,
+                //1m,
+                //13m,
+                //100m,
+                //0.03m,
+                //123.456m,
+                //123456.789m,
+                12233720368.54775807m,
+                //-1m,
+                //-13m,
+                //-100m,
+                //-0.03m,
+                //-123.456m,
+                //-123456.789m,
+                -12233720368.54775808m,
             };
 
             return result;

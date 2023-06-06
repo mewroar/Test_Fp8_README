@@ -271,7 +271,7 @@ public readonly struct FixedPoint8 : INumber<FixedPoint8>
 
         valueA = valueB / InnerPower;
 
-        var num1UnderPoint = valueB - (valueA * InnerPower);
+        var underPoint = valueB - (valueA * InnerPower);
 
         if (valueA < 10000)
         {
@@ -350,17 +350,17 @@ public readonly struct FixedPoint8 : INumber<FixedPoint8>
         buffer[offset++] = (byte)('0' + (num1));
 
 
-        if (num1UnderPoint > 0)
+        if (underPoint > 0)
         {
 
             buffer[offset++] = (byte)'.';
 
-            while (num1UnderPoint > 0)
+            while (underPoint > 0)
             {
-                byte num = (byte)(num1UnderPoint / 10_000_000);
+                byte num = (byte)(underPoint / 10_000_000);
                 buffer[offset++] = (byte)('0' + num);
 
-                num1UnderPoint = num1UnderPoint * 10 - (ulong)num * InnerPower;
+                underPoint = underPoint * 10 - (ulong)num * InnerPower;
             }
         }
 
@@ -570,14 +570,19 @@ public readonly struct FixedPoint8 : INumber<FixedPoint8>
         return new FixedPoint8(left._innerValue % right._innerValue);
     }
 
+    public static FixedPoint8 operator ++(FixedPoint8 value)
+    {
+        return value + One;
+    }
+
     public static FixedPoint8 operator --(FixedPoint8 value)
     {
         return value - One;
     }
 
-    public static FixedPoint8 operator ++(FixedPoint8 value)
+    public static FixedPoint8 operator +(FixedPoint8 value)
     {
-        return value + One;
+        return value;
     }
 
     public static FixedPoint8 operator -(FixedPoint8 value)
@@ -585,10 +590,7 @@ public readonly struct FixedPoint8 : INumber<FixedPoint8>
         return new FixedPoint8(-value.InnerValue);
     }
 
-    public static FixedPoint8 operator +(FixedPoint8 value)
-    {
-        return value;
-    }
+
 
     // ****************************************
     // その他

@@ -62,7 +62,7 @@ public static class WriterExtensions
 
         valueA = valueB / Utf8Json_FixedPoint8.InnerPower;
 
-        var num1UnderPoint = valueB - (valueA * Utf8Json_FixedPoint8.InnerPower);
+        var underPoint = valueB - (valueA * Utf8Json_FixedPoint8.InnerPower);
 
         if (valueA < 10000)
         {
@@ -141,17 +141,17 @@ public static class WriterExtensions
         writer.WriteRawUnsafe((byte)('0' + (num1)));
 
 
-        if (num1UnderPoint > 0)
+        if (underPoint > 0)
         {
 
             writer.WriteRawUnsafe((byte)'.');
 
-            while (num1UnderPoint > 0)
+            while (underPoint > 0)
             {
-                byte num = (byte)(num1UnderPoint / 10_000_000);
+                byte num = (byte)(underPoint / 10_000_000);
                 writer.WriteRawUnsafe((byte)('0' + num));
 
-                num1UnderPoint = num1UnderPoint * 10 - (ulong)num * Utf8Json_FixedPoint8.InnerPower;
+                underPoint = underPoint * 10 - (ulong)num * Utf8Json_FixedPoint8.InnerPower;
             }
         }
         return;
@@ -306,7 +306,7 @@ public static class ReaderExtensions
     }
 
     static readonly long[] powerArray = new long[] {
-    0,
+    1,
     10,
     100,
     1_000,
