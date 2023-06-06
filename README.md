@@ -409,20 +409,42 @@ byte[]でReader,Writer,Deserialize,Serializeの比較
 |One                     |FixedPoint8の1を返します                |
 
 
-|キャスト(FixedPoint8⇔各数値型)| 
-| ------------------------- |
-|sbyte                      |
-|byte                       |
-|short                      |
-|ushort                     |
-|int                        |
-|uint                       |
-|long                       |
-|ulong                      |
-|float                      |
-|double                     |
-|decimal                    |
+|キャスト (FixedPoint8⇔各数値型)| 
+| -------------------------- |
+|sbyte                       |
+|byte                        |
+|short                       |
+|ushort                      |
+|int                         |
+|uint                        |
+|long                        |
+|ulong                       |
+|float                       |
+|double                      |
+|decimal                     |
 
+
+|                    オペレーター| 
+| -------------------------- |
+|+(FixedPoint8,FixedPoint8)  |
+|-(FixedPoint8,FixedPoint8)  |
+|*(FixedPoint8,long)         |
+|*(FixedPoint8,ulong)        |
+|*(FixedPoint8,FixedPoint8)  |
+|/(FixedPoint8,long)         |
+|/(FixedPoint8,ulong)        |
+|/(FixedPoint8,FixedPoint8)  |
+|==(FixedPoint8,FixedPoint8) |
+|!=(FixedPoint8,FixedPoint8) |
+|<(FixedPoint8,FixedPoint8)  |
+|<=(FixedPoint8,FixedPoint8) |
+|>(FixedPoint8,FixedPoint8)  |
+|>=(FixedPoint8,FixedPoint8) |
+|%(FixedPoint8,FixedPoint8)  |
+|++(FixedPoint8)             |
+|--(FixedPoint8)             |
+|+(FixedPoint8)              |
+|-(FixedPoint8)              |
 
 
 |                                                                                               メソッド|                                                                                  説明|
