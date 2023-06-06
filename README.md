@@ -5,7 +5,7 @@ Gitan.FixedPoint8は、固定小数点で-92233720368.54775808～92233720368.547
 実行速度が速いことに重点を置いてUTF8との親和性が高いです。
 
 
-■ 仕様
+■ **仕様**
 
 ・ Gitan.FixedPoint8はuncheckedで動きます、オーバーフローが発生する値でエラーは発生しませんのでご注意ください。
 
@@ -17,6 +17,7 @@ Gitan.FixedPoint8は、固定小数点で-92233720368.54775808～92233720368.547
 ■ **使用方法**
 
 NuGetパッケージ : Gitan.FixedPoint8
+
 NuGetを使用してFixedPoint8パッケージをインストールします。
 
 FixedPoint8を使用する方法を以下に記載します。
@@ -37,10 +38,12 @@ FixedPoint8を使用する方法を以下に記載します。
 
 
 NuGetパッケージ : Gitan.Utf8Json_FixedPoint8
+
 NuGetを使用してUtf8Json_FixedPoint8をインストールします。
 
 Gitan.Utf8Json_FixedPoint8はJsonとFixedPoint8をRead,Writeします。
-ReadFixedPoint8,WriteFixedPoint8の処理はUtf8JsonのNumberConverterを部分引用しています。
+
+ReadFixedPoint8,WriteFixedPoint8の処理は[Utf8Json](https://github.com/neuecc/Utf8Json/blob/master/src/Utf8Json/Internal/NumberConverter.cs)のNumberConverterを部分引用しています。
 
     using Gitan.FixedPoint8;
 
@@ -90,6 +93,7 @@ ReadFixedPoint8,WriteFixedPoint8の処理はUtf8JsonのNumberConverterを部分�
 
 
 Utf8Jsonを使用してFixedPoint8シリアライズ/デシリアライズする方法を以下に記載します。
+
 実行するには別途NuGetを使用して[Utf8Json](https://github.com/neuecc/Utf8Json)をインストールしてください。
 
     using Gitan.FixedPoint8;
@@ -111,7 +115,7 @@ Utf8Jsonを使用してFixedPoint8シリアライズ/デシリアライズする
 
 ■ **パフォーマンス**
    
-    **FixedPoint8**
+**FixedPoint8**
 
     static readonly FixedPoint8 fixedPoint8Value = FixedPoint8.FromInnerValue(-1_234_000_000);　//　12.34
     static readonly FixedPoint8 v2 = FixedPoint8.FromInnerValue(200_000_000);　//　2
@@ -222,7 +226,7 @@ FixedPoint8との乗算は遅いので使用を推奨しない
 |    LessThanFixedPoint8 |      0.1953 ns |   0.0167 ns |   0.0139 ns |      0.1911 ns |
 
 
-       **Utf8JsonFixedPoint8**
+**Utf8JsonFixedPoint8**
 
 
     /////////////////////////////////////// Reader
@@ -408,8 +412,8 @@ byte[]でReader,Writer,Deserialize,Serializeの比較
 
 |                 プロパティ|                                 説明|
 | ---------------------- | ----------------------------------- |
-|MaxValue                |FixedPoint8の最大値(92233720368.54775807)をで返します       　　  |～
-|MinValue                |FixedPoint8の最小値(-92233720368.54775808)をで返します           　|
+|MaxValue                |FixedPoint8の最大値(92233720368.54775807)を返します|
+|MinValue                |FixedPoint8の最小値(-92233720368.54775808)を返します|
 |Zero                    |FixedPoint8の0を返します                |
 |One                     |FixedPoint8の1を返します                |
 |Radix                   |基数として10を返します                        |
@@ -463,20 +467,20 @@ byte[]でReader,Writer,Deserialize,Serializeの比較
 |Parse(string)                                                                                       |文字列をFixedPoint8に変換しようとします。                                                    |
 |Parse(ReadOnlySpan<char>)                                                                           |読み取り専用のcharを、FixedPoint8に変換しようとします。                                         |
 |Parse(ReadOnlySpan<byte>)                                                                           |読み取り専用のbyteを、FixedPoint8に変換しようとします。                                             |
-|TryParse([NotNullWhen(true)] string?, out FixedPoint8)                                              |文字列をFixedPoint8に変換しようとします。戻り値は、変換が成功したか失敗したかを示します。                       |
-|TryParse(ReadOnlySpan<char>, out FixedPoint8)                                                       |読み取り専用のcharを、FixedPoint8に変換しようとします。戻り値は、変換が成功したか失敗したかを示します。               |
-|TryParse(ReadOnlySpan<byte>, out FixedPoint8)                                                       |読み取り専用のbyteを、FixedPoint8に変換しようとします。 戻り値は、変換が成功したか失敗したかを示します。                 |
+|TryParse([NotNullWhen(true)] string?, out FixedPoint8)                                              |文字列をFixedPoint8に変換しようとします。戻り値は、変換が成功したか失敗したかを示します。                 |
+|TryParse(ReadOnlySpan<char>, out FixedPoint8)                                                       |読み取り専用のcharを、FixedPoint8に変換しようとします。戻り値は、変換が成功したか失敗したかを示します。         |
+|TryParse(ReadOnlySpan<byte>, out FixedPoint8)                                                       |読み取り専用のbyteを、FixedPoint8に変換しようとします。 戻り値は、変換が成功したか失敗したかを示します。         |
 |ToString()                                                                                          |このインスタンスの数値を同等の文字列表現に変換します。                                         |
-|ToUtf8()                                                                                            |このインスタンスの数値をUTF8に変換します。                                                               |
+|ToUtf8()                                                                                            |このインスタンスの数値をUTF8に変換します。                                                            |
 |Equals(object?)                                                                                     |このインスタンスが指定されたオブジェクトと等しいかどうかを示す値を返します。            |
 |Equals(FixedPoint8)                                                                                 |このインスタンスが指定されたFixedPoint8と等しいかどうかを示す値を返します。               |
 |GetHashCode()                                                                                       |このインスタンスのハッシュ コードを返します                                                              |
-|CompareTo(object?)                                                                                  |このインスタンスを指定されたオブジェクトと比較し、それらの相対値の指示を返します。                                  |
+|CompareTo(object?)                                                                                  |このインスタンスを指定されたオブジェクトと比較し、それらの相対値の指示を返します。                              |
 |CompareTo(FixedPoint8)                                                                              |このインスタンスを指定されたFixedPoint8と比較し、それらの相対値の指示を返します。                   |
 |Abs(FixedPoint8)                                                                                    |FixedPoint8の絶対値を返します。                                                            |
 |IsCanonical(FixedPoint8)                                                                            |trueを返します                                                               |
 |IsComplexNumber(FixedPoint8)                                                                        |falseを返します                                                               |
-|IsEvenInteger(FixedPoint8)                                                                          |値が偶数の整数を表すかどうかを判断します。                                                               |
+|IsEvenInteger(FixedPoint8)                                                                          |値が偶数の整数を表すかどうかを判断します。                                                           |
 |IsFinite(FixedPoint8)                                                                               |trueを返します                                                                |
 |IsImaginaryNumber(FixedPoint8)                                                                      |falseを返します                                                              |
 |IsInfinity(FixedPoint8)                                                                             |falseを返します                                                             |
@@ -485,7 +489,7 @@ byte[]でReader,Writer,Deserialize,Serializeの比較
 |IsNegative(FixedPoint8)                                                                             |値が負かどうかを判断します。                                                              |
 |IsNegativeInfinity(FixedPoint8)                                                                     |falseを返します                                                               |
 |IsNormal(FixedPoint8)                                                                               |trueを返します                                                              |
-|IsOddInteger(FixedPoint8)                                                                           |値が奇数の整数を表すかどうかを判断します。                                                               |
+|IsOddInteger(FixedPoint8)                                                                           |値が奇数の整数を表すかどうかを判断します。                                                      |
 |IsPositive(FixedPoint8)                                                                             |値が正かどうかを判断します                                                        |
 |IsPositiveInfinity(FixedPoint8)                                                                     |falseを返します                                                                  |
 |IsRealNumber(FixedPoint8)                                                                           |trueを返します                                                               |
@@ -510,7 +514,7 @@ byte[]でReader,Writer,Deserialize,Serializeの比較
 |Floor()                                                                                             |指定した倍精度浮動小数点数以下の数のうち、最大の整数値を返します。               |
 |Floor(int)                                                                                          |指定した小数点以下の桁数に最大の値を返します。                                                    |
 |Truncate()                                                                                          |指定した10進数の整数部を計算します。                                                              |
-|Truncate(int)                                                                                       |指定した小数点以下の桁数に値を計算します。                                                              |
+|Truncate(int)                                                                                       |指定した小数点以下の桁数に値を計算します。                                         |
 |Ceiling()                                                                                           |指定した 10進数以上の数のうち、最小の整数値を返します。        |
 |Ceiling(int)                                                                                        |指定した倍精度浮動小数点数以上の数のうち、最小の値を返します。              |
 
@@ -521,5 +525,4 @@ byte[]でReader,Writer,Deserialize,Serializeの比較
 
 ・ FixedPointとUtf8の相互変換はatoi/itoaを使用、ソースコードは[Utf8Json](https://github.com/neuecc/Utf8Json)からの移植を行いました。
 
-
-powerArrayの話
+・ //powerArrayの話
