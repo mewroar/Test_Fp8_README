@@ -5,18 +5,21 @@ Gitan.FixedPoint8は、固定小数点で-92233720368.54775808～92233720368.547
 実行速度が速いことに重点を置いてUTF8との親和性が高いです。
 
 
-■ **技術仕様**
+■ 仕様
 
-・ 偶数、奇数判定は速度に重点を置くため％を使用せずに実装しています。
-・ FixedPoint8同士の乗算、除算（速度最適化未実施）
-・ stringへの変換（速度最適化未実施）
 ・ Gitan.FixedPoint8はuncheckedで動きます、オーバーフローが発生する値でエラーは発生しませんのでご注意ください。
+
+・ FixedPoint8同士の乗算、除算（速度最適化未実施）
+
+・ stringへの変換（速度最適化未実施）
 
 
 ■ **使用方法**
 
 NuGetパッケージ : Gitan.FixedPoint8
 NuGetを使用してFixedPoint8パッケージをインストールします。
+
+FixedPoint8を使用する方法を以下に記載します。
 
     using Gitan.FixedPoint8;
 
@@ -86,8 +89,8 @@ ReadFixedPoint8,WriteFixedPoint8の処理はUtf8JsonのNumberConverterを部分�
     }
 
 
-下記はUtf8Jsonを使用したケースです。
-実行するには別途NuGetを使用してUtf8Jsonをインストールしてください。
+Utf8Jsonを使用してFixedPoint8シリアライズ/デシリアライズする方法を以下に記載します。
+実行するには別途NuGetを使用して[Utf8Json](https://github.com/neuecc/Utf8Json)をインストールしてください。
 
     using Gitan.FixedPoint8;
 
@@ -107,6 +110,8 @@ ReadFixedPoint8,WriteFixedPoint8の処理はUtf8JsonのNumberConverterを部分�
 
 
 ■ **パフォーマンス**
+   
+    **FixedPoint8**
 
     static readonly FixedPoint8 fixedPoint8Value = FixedPoint8.FromInnerValue(-1_234_000_000);　//　12.34
     static readonly FixedPoint8 v2 = FixedPoint8.FromInnerValue(200_000_000);　//　2
@@ -217,7 +222,7 @@ FixedPoint8との乗算は遅いので使用を推奨しない
 |    LessThanFixedPoint8 |      0.1953 ns |   0.0167 ns |   0.0139 ns |      0.1911 ns |
 
 
-■ **Utf8JsonFixedPoint8**
+       **Utf8JsonFixedPoint8**
 
 
     /////////////////////////////////////// Reader
@@ -403,8 +408,8 @@ byte[]でReader,Writer,Deserialize,Serializeの比較
 
 |                 プロパティ|                                 説明|
 | ---------------------- | ----------------------------------- |
-|MaxValue                |longの可能な最大値をFixedPoint8で返します |
-|MinValue                |longの可能な最小値をFixedPoint8で返します |
+|MaxValue                |FixedPoint8の最大値(92233720368.54775807)をで返します       　　  |～
+|MinValue                |FixedPoint8の最小値(-92233720368.54775808)をで返します           　|
 |Zero                    |FixedPoint8の0を返します                |
 |One                     |FixedPoint8の1を返します                |
 |Radix                   |基数として10を返します                        |
@@ -490,16 +495,16 @@ byte[]でReader,Writer,Deserialize,Serializeの比較
 |MaxMagnitudeNumber(FixedPoint8, FixedPoint8)                                                        |値を比較して大きい方の値を返します                                                                 |
 |MinMagnitude(FixedPoint8, FixedPoint8)                                                              |値を比較して小さい方の値を返します                                                                |
 |MinMagnitudeNumber(FixedPoint8, FixedPoint8)                                                        |値を比較して小さい方の値を返します                                                             |
-|Parse(ReadOnlySpan<char>, NumberStyles, IFormatProvider?)                                           |未開発（スローされます）                                                       |
-|Parse(string, NumberStyles, IFormatProvider?)                                                       |未開発（スローされます）                                                              |
-|TryParse(ReadOnlySpan<char>, NumberStyles, IFormatProvider?, [MaybeNullWhen(false)] out FixedPoint8)   |未開発（スローされます）                                                           |
-|TryParse([NotNullWhen(true)] string?, NumberStyles, IFormatProvider?, [MaybeNullWhen(false)] out FixedPoint8)    |未開発（スローされます）                                                              |
-|TryFormat(Span<char> , out int, ReadOnlySpan<char>, IFormatProvider?)                               |未開発（スローされます）                                                               |
-|ToString(string?, IFormatProvider?)                                                                 |未開発（スローされます）                                                              |
-|Parse(ReadOnlySpan<char>, IFormatProvider?)                                                         |未開発（スローされます）                                                           |
-|TryParse(ReadOnlySpan<char>, IFormatProvider?, [MaybeNullWhen(false)] out FixedPoint8)              |未開発（スローされます）                                                               |
-|Parse(string, IFormatProvider?)                                                                     |未開発（スローされます）                                                             |
-|TryParse([NotNullWhen(true)] string?, IFormatProvider?, [MaybeNullWhen(false)] out FixedPoint8)     |未開発（スローされます）                                                            |
+|Parse(ReadOnlySpan<char>, NumberStyles, IFormatProvider?)                                           |未実装                                                       |
+|Parse(string, NumberStyles, IFormatProvider?)                                                       |未実装                                                              |
+|TryParse(ReadOnlySpan<char>, NumberStyles, IFormatProvider?, [MaybeNullWhen(false)] out FixedPoint8)   |未実装                                                          |
+|TryParse([NotNullWhen(true)] string?, NumberStyles, IFormatProvider?, [MaybeNullWhen(false)] out FixedPoint8)    |未実装                                                |
+|TryFormat(Span<char> , out int, ReadOnlySpan<char>, IFormatProvider?)                               |未実装                                                               |
+|ToString(string?, IFormatProvider?)                                                                 |未実装                                                              |
+|Parse(ReadOnlySpan<char>, IFormatProvider?)                                                         |未実装                                                           |
+|TryParse(ReadOnlySpan<char>, IFormatProvider?, [MaybeNullWhen(false)] out FixedPoint8)              |未実装                                                               |
+|Parse(string, IFormatProvider?)                                                                     |未実装                                                             |
+|TryParse([NotNullWhen(true)] string?, IFormatProvider?, [MaybeNullWhen(false)] out FixedPoint8)     |未実装                                                           |
 |Round()                                                                                             |最も近い整数に値を丸めます                                                              |
 |Round(int)                                                                                          |指定した小数点以下の桁数に値を丸めます。                                                            |
 |Floor()                                                                                             |指定した倍精度浮動小数点数以下の数のうち、最大の整数値を返します。               |
@@ -508,3 +513,13 @@ byte[]でReader,Writer,Deserialize,Serializeの比較
 |Truncate(int)                                                                                       |指定した小数点以下の桁数に値を計算します。                                                              |
 |Ceiling()                                                                                           |指定した 10進数以上の数のうち、最小の整数値を返します。        |
 |Ceiling(int)                                                                                        |指定した倍精度浮動小数点数以上の数のうち、最小の値を返します。              |
+
+
+■ 実装説明
+
+・ 偶数、奇数判定は速度に重点を置くため％を使用せずに実装しています。
+
+・ FixedPointとUtf8の相互変換はatoi/itoaを使用、ソースコードは[Utf8Json](https://github.com/neuecc/Utf8Json)からの移植を行いました。
+
+
+powerArrayの話
