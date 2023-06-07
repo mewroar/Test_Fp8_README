@@ -1084,7 +1084,7 @@ namespace Gitan.FixedPoint8.Tests
 
 
 
-        //[TestMethod()]
+        //[TestMethod()] //
         //public void CastTest()
         //{
             //doubleCast
