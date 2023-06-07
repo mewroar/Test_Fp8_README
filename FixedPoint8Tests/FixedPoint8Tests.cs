@@ -186,20 +186,22 @@ namespace Gitan.FixedPoint8.Tests
         {
             var result = new List<decimal>()
             {
-                //0m,
-                //1m,
-                //13m,
-                //100m,
-                //0.03m,
-                //123.456m,
-                //123456.789m,
+                0m,
+                1m,
+                13m,
+                100m,
+                0.03m,
+                0.00001m,
+                123.456m,
+                123456.789m,
                 12233720368.54775807m,
-                //-1m,
-                //-13m,
-                //-100m,
-                //-0.03m,
-                //-123.456m,
-                //-123456.789m,
+                -1m,
+                -13m,
+                -100m,
+                -0.03m,
+                -0.00001m,
+                -123.456m,
+                -123456.789m,
                 -12233720368.54775808m,
             };
 
@@ -742,163 +744,504 @@ namespace Gitan.FixedPoint8.Tests
 
 
         [TestMethod()]
-        public void CastTest()
+        public void CastFromFp8Test()
         {
+            var fp8sByteList = new Dictionary<FixedPoint8, sbyte>()
+            {
+                { FixedPoint8 .Zero,0},
+                { FixedPoint8 .One,1},
+                { new FixedPoint8(12_700_000_000),sbyte.MaxValue},
+                { -FixedPoint8 .One,-1},
+                { new FixedPoint8(-12_800_000_000),sbyte.MinValue},
+            };
+
+            foreach (KeyValuePair<FixedPoint8, sbyte> dic in fp8sByteList)
+            {
+                var value = (sbyte)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var fp8ByteList = new Dictionary<FixedPoint8, byte>()
+            {
+                { FixedPoint8 .Zero,0},
+                { FixedPoint8 .One,1},
+                { new FixedPoint8(25_500_000_000),byte.MaxValue},
+
+            };
+
+            foreach (KeyValuePair<FixedPoint8, byte> dic in fp8ByteList)
+            {
+                var value = (byte)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var fp8ShortList = new Dictionary<FixedPoint8, short>()
+            {
+                { FixedPoint8 .Zero,0},
+                { FixedPoint8 .One,1},
+                { new FixedPoint8(3_276_700_000_000),short.MaxValue},
+                { -FixedPoint8 .One,-1},
+                { new FixedPoint8(-3_276_800_000_000),short.MinValue},
+            };
+
+            foreach (KeyValuePair<FixedPoint8, short> dic in fp8ShortList)
+            {
+                var value = (short)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var fp8uShortList = new Dictionary<FixedPoint8, ushort>()
+            {
+                { FixedPoint8 .Zero,0},
+                { FixedPoint8 .One,1},
+                { new FixedPoint8(6_553_500_000_000),ushort.MaxValue},
+            };
+
+            foreach (KeyValuePair<FixedPoint8, ushort> dic in fp8uShortList)
+            {
+                var value = (ushort)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var fp8IntlList = new Dictionary<FixedPoint8, int>()
+            {
+                { FixedPoint8 .Zero,0},
+                { FixedPoint8 .One,1},
+                {new FixedPoint8(int.MaxValue),21},
+                { -FixedPoint8 .One,-1},
+                {new FixedPoint8(int.MinValue),-21},
+            };
+
+            foreach (KeyValuePair<FixedPoint8, int> dic in fp8IntlList)
+            {
+                var value = (int)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var fp8uIntlList = new Dictionary<FixedPoint8, uint>()
+            {
+                { FixedPoint8 .Zero,0u},
+                { FixedPoint8 .One,1u},
+                {new FixedPoint8(uint.MaxValue),42u},
+
+            };
+
+            foreach (KeyValuePair<FixedPoint8, uint> dic in fp8uIntlList)
+            {
+                var value = (uint)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var fp8LongList = new Dictionary<FixedPoint8, long>()
+            {
+                { FixedPoint8 .Zero,0l},
+                { FixedPoint8 .One,1l},
+                { FixedPoint8.MaxValue,long.MaxValue/100_000_000},
+                { -FixedPoint8 .One,-1l},
+                { FixedPoint8.MinValue,long.MinValue/100_000_000},
+            };
+
+            foreach (KeyValuePair<FixedPoint8, long> dic in fp8LongList)
+            {
+                var value = (long)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var fp8uLongList = new Dictionary<FixedPoint8, ulong>()
+            {
+                { FixedPoint8 .Zero,0ul},
+                { FixedPoint8 .One,1ul},
+            };
+
+            foreach (KeyValuePair<FixedPoint8, ulong> dic in fp8uLongList)
+            {
+                var value = (ulong)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var fp8FloatlList = new Dictionary<FixedPoint8, float>()
+            {
+                { FixedPoint8 .Zero,0f},
+                { FixedPoint8 .One,1f},
+                { FixedPoint8.MaxValue,92233720368.54775807f},
+                {new FixedPoint8(1_000_000),0.01f},
+                { -FixedPoint8 .One,-1f},
+                { FixedPoint8.MinValue,-92233720368.54775808f},
+                {new FixedPoint8(-1_000_000),-0.01f},
+            };
+
+            foreach (KeyValuePair<FixedPoint8, float> dic in fp8FloatlList)
+            {
+                var value = (float)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var fp8DoubleList = new Dictionary<FixedPoint8, double>()
+            {
+                { FixedPoint8 .Zero,0},
+                { FixedPoint8 .One,1},
+                { FixedPoint8.MaxValue,92233720368.54775807},
+                {new FixedPoint8(1_000_000),0.01},
+                { -FixedPoint8 .One,-1},
+                { FixedPoint8.MinValue,-92233720368.54775808},
+                {new FixedPoint8(-1_000_000),-0.01},
+            };
+
+            foreach(KeyValuePair<FixedPoint8,double>dic in fp8DoubleList)
+            {
+                var value = (double)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var fp8DecimalList = new Dictionary<FixedPoint8, decimal>()
+            {
+                { FixedPoint8 .Zero,0m},
+                { FixedPoint8 .One,1m},
+                { FixedPoint8.MaxValue,92233720368.54775807m},
+                {new FixedPoint8(1_000_000),0.01m},
+                { -FixedPoint8 .One,-1m},
+                { FixedPoint8.MinValue,-92233720368.54775808m},
+                {new FixedPoint8(-1_000_000),-0.01m},
+            }; 
+            
+            foreach (KeyValuePair<FixedPoint8,decimal>dic in fp8DecimalList)
+            {
+                var value = (decimal)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }  
+        }
+
+
+        [TestMethod]
+        public void CastToFp8Test()
+        {
+            sbyte sbyteZero = 0;
+            sbyte sbyteOne = 1;
+            sbyte sbyteMOne = -1;
+            var sbyteFp8Dic = new Dictionary<sbyte, FixedPoint8>()
+            {
+                { sbyteZero,FixedPoint8.Zero},
+                { sbyteOne,FixedPoint8.One},
+                { sbyte.MaxValue,new FixedPoint8(12700000000)},
+                { sbyteMOne,-FixedPoint8.One},
+                { sbyte.MinValue,new FixedPoint8(-12800000000)},
+            };
+
+            foreach (KeyValuePair<sbyte, FixedPoint8> dic in sbyteFp8Dic)
+            {
+                var value = (FixedPoint8)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var byteFp8Dic = new Dictionary<byte, FixedPoint8>()
+            {
+                { byte.MinValue,FixedPoint8.Zero},
+                { byte.MaxValue,new FixedPoint8(25500000000)},
+            };
+
+            foreach (KeyValuePair<byte, FixedPoint8> dic in byteFp8Dic)
+            {
+                var value = (FixedPoint8)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            short shortZero = 0;
+            short shortOne = 1;
+            short shortMOne = -1;
+            var shortFp8Dic = new Dictionary<short, FixedPoint8>()
+            {
+                { shortZero,FixedPoint8.Zero},
+                { shortOne,FixedPoint8.One},
+                { short.MaxValue,new FixedPoint8(3276700000000)},
+                { shortMOne,-FixedPoint8.One},
+                { short.MinValue,new FixedPoint8(-3276800000000)},
+            };
+
+            foreach (KeyValuePair<short, FixedPoint8> dic in shortFp8Dic)
+            {
+                var value = (FixedPoint8)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var ushortFp8Dic = new Dictionary<ushort, FixedPoint8>()
+            {
+                { ushort.MinValue,FixedPoint8.Zero},
+                { ushort.MaxValue,new FixedPoint8(6553500000000)},
+            };
+
+            foreach (KeyValuePair<ushort, FixedPoint8> dic in ushortFp8Dic)
+            {
+                var value = (FixedPoint8)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var intFp8Dic = new Dictionary<int, FixedPoint8>()
+            {
+                { 0,FixedPoint8.Zero},
+                { 1,FixedPoint8.One},
+                { int.MaxValue,new FixedPoint8(214748364700000000)},
+                { -1,-FixedPoint8.One},
+                { int.MinValue,new FixedPoint8(-214748364800000000)},
+            };
+
+            foreach (KeyValuePair<int, FixedPoint8> dic in intFp8Dic)
+            {
+                var value = (FixedPoint8)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var uintFp8Dic = new Dictionary<uint, FixedPoint8>()
+            {
+                { 0u,FixedPoint8.Zero},
+                { 1u,FixedPoint8.One},
+                { uint.MaxValue,new FixedPoint8(429496729500000000)},
+            };
+
+            foreach (KeyValuePair<uint, FixedPoint8> dic in uintFp8Dic)
+            {
+                var value = (FixedPoint8)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var longFp8Dic = new Dictionary<long, FixedPoint8>()
+            {
+                { 0L,FixedPoint8.Zero},
+                { 1L,FixedPoint8.One},
+                { long.MaxValue/100000000,new FixedPoint8(9223372036800000000)},
+                { -1L,-FixedPoint8.One},
+                { long.MinValue/100000000,new FixedPoint8(-9223372036800000000)},
+            };
+
+            foreach (KeyValuePair<long, FixedPoint8> dic in longFp8Dic)
+            {
+                var value = (FixedPoint8)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var ulongFp8Dic = new Dictionary<ulong, FixedPoint8>()
+            {
+                { 0ul,FixedPoint8.Zero},
+                { 1ul,FixedPoint8.One},
+            };
+
+            foreach (KeyValuePair<ulong, FixedPoint8> dic in ulongFp8Dic)
+            {
+                var value = (FixedPoint8)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var floatFp8Dic = new Dictionary<float, FixedPoint8>()
+            {
+                { 0f,FixedPoint8.Zero},
+                { 1f,FixedPoint8.One},
+                { 0.01f,new FixedPoint8(1_000_000)},
+                { 123.456f,new FixedPoint8(12345600000)},
+                { -1f,-FixedPoint8.One},
+                { -0.01f,new FixedPoint8(-1_000_000)},
+                { -123.456f,new FixedPoint8(-12345600000)},
+            };
+
+            foreach (KeyValuePair<float, FixedPoint8> dic in floatFp8Dic)
+            {
+                var value = (FixedPoint8)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var doubleFp8Dic = new Dictionary<double, FixedPoint8>()
+            {
+                { 0d,FixedPoint8.Zero},
+                { 1d,FixedPoint8.One},
+                { 0.01d,new FixedPoint8(1_000_000)},
+                { 123.456d,new FixedPoint8(12345600000)},
+                { -1d,-FixedPoint8.One},
+                { -0.01d,new FixedPoint8(-1_000_000)},
+                { -123.456d,new FixedPoint8(-12345600000)},
+            };
+
+            foreach (KeyValuePair<double, FixedPoint8> dic in doubleFp8Dic)
+            {
+                var value = (FixedPoint8)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+
+            var decimalFp8Dic = new Dictionary<decimal, FixedPoint8>()
+            {
+                { 0m,FixedPoint8.Zero},
+                { 1m,FixedPoint8.One},
+                { 0.01m,new FixedPoint8(1_000_000)},
+                { 123.456m,new FixedPoint8(12345600000)},
+                { -1m,-FixedPoint8.One},
+                { -0.01m,new FixedPoint8(-1_000_000)},
+                { -123.456m,new FixedPoint8(-12345600000)},
+            };
+
+            foreach (KeyValuePair<decimal, FixedPoint8> dic in decimalFp8Dic)
+            {
+                var value = (FixedPoint8)dic.Key;
+                Assert.IsTrue(value.Equals(dic.Value));
+            }
+        }
+
+
+
+        //[TestMethod()]
+        //public void CastTest()
+        //{
             //doubleCast
-            var fp8ToDouble1 = (double)FixedPoint8Test.V001;
-            Assert.IsTrue(fp8ToDouble1.Equals(0.01));
-            var fp8ToDouble2 = (double)-FixedPoint8Test.V1;
-            Assert.IsTrue(fp8ToDouble2.Equals(-1));
-            var fp8ToDouble3 = (double)new FixedPoint8(120_000_000);
-            Assert.IsTrue(fp8ToDouble3.Equals(1.2));
-            var fp8ToDouble4 = (double)new FixedPoint8(-120_000_000);
-            Assert.IsTrue(fp8ToDouble4.Equals(-1.2));
+            //var fp8ToDouble1 = (double)FixedPoint8Test.V001;
+            //Assert.IsTrue(fp8ToDouble1.Equals(0.01));
+            //var fp8ToDouble2 = (double)-FixedPoint8Test.V1;
+            //Assert.IsTrue(fp8ToDouble2.Equals(-1));
+            //var fp8ToDouble3 = (double)new FixedPoint8(120_000_000);
+            //Assert.IsTrue(fp8ToDouble3.Equals(1.2));
+            //var fp8ToDouble4 = (double)new FixedPoint8(-120_000_000);
+            //Assert.IsTrue(fp8ToDouble4.Equals(-1.2));
 
-            //decimalCast
-            var fp8ToDecimal1 = (decimal)FixedPoint8Test.V001;
-            Assert.IsTrue(fp8ToDecimal1.Equals(0.01M));
-            var fp8ToDecimal2 = (decimal)-FixedPoint8Test.V1;
-            Assert.IsTrue(fp8ToDecimal2.Equals(-1M));
-            var fp8ToDecimal3 = (decimal)new FixedPoint8(150_000_000);
-            Assert.IsTrue(fp8ToDecimal3.Equals(1.5M));
-            var fp8ToDecimal4 = (decimal)new FixedPoint8(-150_000_000);
-            Assert.IsTrue(fp8ToDecimal4.Equals(-1.5M));
+            ////decimalCast
+            //var fp8ToDecimal1 = (decimal)FixedPoint8Test.V001;
+            //Assert.IsTrue(fp8ToDecimal1.Equals(0.01M));
+            //var fp8ToDecimal2 = (decimal)-FixedPoint8Test.V1;
+            //Assert.IsTrue(fp8ToDecimal2.Equals(-1M));
+            //var fp8ToDecimal3 = (decimal)new FixedPoint8(150_000_000);
+            //Assert.IsTrue(fp8ToDecimal3.Equals(1.5M));
+            //var fp8ToDecimal4 = (decimal)new FixedPoint8(-150_000_000);
+            //Assert.IsTrue(fp8ToDecimal4.Equals(-1.5M));
 
-            //floatCast
-            var fp8ToFloat1 = (float)FixedPoint8Test.V001;
-            Assert.IsTrue(fp8ToFloat1.Equals(0.01F));
-            var fp8ToFloat2 = (float)-FixedPoint8Test.V1;
-            Assert.IsTrue(fp8ToFloat2.Equals(-1F));
-            var fp8ToFloat3 = (float)new FixedPoint8(150_000_000);
-            Assert.IsTrue(fp8ToFloat3.Equals(1.5F));
-            var fp8ToFloat4 = (float)new FixedPoint8(-150_000_000);
-            Assert.IsTrue(fp8ToFloat4.Equals(-1.5F));
+            ////floatCast
+            //var fp8ToFloat1 = (float)FixedPoint8Test.V001;
+            //Assert.IsTrue(fp8ToFloat1.Equals(0.01F));
+            //var fp8ToFloat2 = (float)-FixedPoint8Test.V1;
+            //Assert.IsTrue(fp8ToFloat2.Equals(-1F));
+            //var fp8ToFloat3 = (float)new FixedPoint8(150_000_000);
+            //Assert.IsTrue(fp8ToFloat3.Equals(1.5F));
+            //var fp8ToFloat4 = (float)new FixedPoint8(-150_000_000);
+            //Assert.IsTrue(fp8ToFloat4.Equals(-1.5F));
 
-            //intCast
-            var fp8ToInt1 = (int)new FixedPoint8(0);
-            Assert.IsTrue(fp8ToInt1.Equals(0));
-            var fp8ToInt2 = (int)new FixedPoint8(int.MinValue);
-            Assert.IsTrue(fp8ToInt2.Equals(-21));
-            var fp8ToInt3 = (int)new FixedPoint8(int.MaxValue);
-            Assert.IsTrue(fp8ToInt3.Equals(21));
-            var fp8ToInt4 = (int)new FixedPoint8(190_000_000);
-            Assert.IsTrue(fp8ToInt4.Equals(1));
-            var fp8ToInt5 = (int)new FixedPoint8(-190_000_000);
-            Assert.IsTrue(fp8ToInt5.Equals(-1));
+            ////intCast
+            //var fp8ToInt1 = (int)new FixedPoint8(0);
+            //Assert.IsTrue(fp8ToInt1.Equals(0));
+            //var fp8ToInt2 = (int)new FixedPoint8(int.MinValue);
+            //Assert.IsTrue(fp8ToInt2.Equals(-21));
+            //var fp8ToInt3 = (int)new FixedPoint8(int.MaxValue);
+            //Assert.IsTrue(fp8ToInt3.Equals(21));
+            //var fp8ToInt4 = (int)new FixedPoint8(190_000_000);
+            //Assert.IsTrue(fp8ToInt4.Equals(1));
+            //var fp8ToInt5 = (int)new FixedPoint8(-190_000_000);
+            //Assert.IsTrue(fp8ToInt5.Equals(-1));
 
-            //uintCast
-            var fp8ToUint1 = (uint)new FixedPoint8(uint.MinValue);
-            Assert.IsTrue(fp8ToUint1.Equals(0));
-            var fp8ToUint2 = (uint)new FixedPoint8(uint.MaxValue);
-            Assert.IsTrue(fp8ToUint2.Equals(42));
-            var fp8ToUint3 = (uint)new FixedPoint8(120_000_000);
-            Assert.IsTrue(fp8ToUint3.Equals(1));
+            ////uintCast
+            //var fp8ToUint1 = (uint)new FixedPoint8(uint.MinValue);
+            //Assert.IsTrue(fp8ToUint1.Equals(0));
+            //var fp8ToUint2 = (uint)new FixedPoint8(uint.MaxValue);
+            //Assert.IsTrue(fp8ToUint2.Equals(42));
+            //var fp8ToUint3 = (uint)new FixedPoint8(120_000_000);
+            //Assert.IsTrue(fp8ToUint3.Equals(1));
 
-            //longCast
-            var fp8ToLong1 = (long)FixedPoint8.Zero;
-            Assert.IsTrue(fp8ToLong1.Equals(0));
-            var fp8ToLong2 = (long)FixedPoint8.MinValue;
-            Assert.IsTrue(fp8ToLong2.Equals(-92233720368));
-            var fp8ToLong3 = (long)FixedPoint8.MaxValue;
-            Assert.IsTrue(fp8ToLong3.Equals(92233720368));
-            var fp8ToLong4 = (long)new FixedPoint8(150_000_000);
-            Assert.IsTrue(fp8ToLong4.Equals(1));
-            var fp8ToLong5 = (long)new FixedPoint8(-150_000_000);
-            Assert.IsTrue(fp8ToLong5.Equals(-1));
+            ////longCast
+            //var fp8ToLong1 = (long)FixedPoint8.Zero;
+            //Assert.IsTrue(fp8ToLong1.Equals(0));
+            //var fp8ToLong2 = (long)FixedPoint8.MinValue;
+            //Assert.IsTrue(fp8ToLong2.Equals(-92233720368));
+            //var fp8ToLong3 = (long)FixedPoint8.MaxValue;
+            //Assert.IsTrue(fp8ToLong3.Equals(92233720368));
+            //var fp8ToLong4 = (long)new FixedPoint8(150_000_000);
+            //Assert.IsTrue(fp8ToLong4.Equals(1));
+            //var fp8ToLong5 = (long)new FixedPoint8(-150_000_000);
+            //Assert.IsTrue(fp8ToLong5.Equals(-1));
 
-            //ulongCast
-            var fp8ToUlong1 = (ulong)new FixedPoint8(0);
-            Assert.IsTrue(fp8ToUlong1.Equals(0));
-            var fp8ToUlong2 = (ulong)new FixedPoint8(100_000_000_000);
-            Assert.IsTrue(fp8ToUlong2.Equals(1000));
-            var fp8ToUlong3 = (ulong)new FixedPoint8(150_000_000);
-            Assert.IsTrue(fp8ToUlong3.Equals(1));
+            ////ulongCast
+            //var fp8ToUlong1 = (ulong)new FixedPoint8(0);
+            //Assert.IsTrue(fp8ToUlong1.Equals(0));
+            //var fp8ToUlong2 = (ulong)new FixedPoint8(100_000_000_000);
+            //Assert.IsTrue(fp8ToUlong2.Equals(1000));
+            //var fp8ToUlong3 = (ulong)new FixedPoint8(150_000_000);
+            //Assert.IsTrue(fp8ToUlong3.Equals(1));
 
 
-            //shortCast
-            var fp8ToShort1 = (short)new FixedPoint8(0);
-            Assert.IsTrue(fp8ToShort1.Equals(0));
-            var fp8ToShort2 = (short)new FixedPoint8(-350_000_000_000);
-            Assert.IsTrue(fp8ToShort2.Equals(-3500));
-            var fp8ToShort3 = (short)new FixedPoint8(8_000_000_000);
-            Assert.IsTrue(fp8ToShort3.Equals(80));
-            var fp8ToShort4 = (short)new FixedPoint8(150_000_000);
-            Assert.IsTrue(fp8ToShort4.Equals(1));
-            var fp8ToShort5 = (short)new FixedPoint8(-150_000_000);
-            Assert.IsTrue(fp8ToShort5.Equals(-1));
+            ////shortCast
+            //var fp8ToShort1 = (short)new FixedPoint8(0);
+            //Assert.IsTrue(fp8ToShort1.Equals(0));
+            //var fp8ToShort2 = (short)new FixedPoint8(-350_000_000_000);
+            //Assert.IsTrue(fp8ToShort2.Equals(-3500));
+            //var fp8ToShort3 = (short)new FixedPoint8(8_000_000_000);
+            //Assert.IsTrue(fp8ToShort3.Equals(80));
+            //var fp8ToShort4 = (short)new FixedPoint8(150_000_000);
+            //Assert.IsTrue(fp8ToShort4.Equals(1));
+            //var fp8ToShort5 = (short)new FixedPoint8(-150_000_000);
+            //Assert.IsTrue(fp8ToShort5.Equals(-1));
 
-            //ushortCast
-            var fp8ToUshort1 = (ushort)new FixedPoint8(0);
-            Assert.IsTrue(fp8ToUshort1.Equals(0));
-            var fp8ToUshort2 = (ushort)new FixedPoint8(125_000_000_000);
-            Assert.IsTrue(fp8ToUshort2.Equals(1250));
-            var fp8ToUshort3 = (ushort)new FixedPoint8(150_000_000);
-            Assert.IsTrue(fp8ToUshort3.Equals(1));
+            ////ushortCast
+            //var fp8ToUshort1 = (ushort)new FixedPoint8(0);
+            //Assert.IsTrue(fp8ToUshort1.Equals(0));
+            //var fp8ToUshort2 = (ushort)new FixedPoint8(125_000_000_000);
+            //Assert.IsTrue(fp8ToUshort2.Equals(1250));
+            //var fp8ToUshort3 = (ushort)new FixedPoint8(150_000_000);
+            //Assert.IsTrue(fp8ToUshort3.Equals(1));
 
-            //sbyteCast
-            var fp8ToSbyte1 = (sbyte)new FixedPoint8(0);
-            Assert.IsTrue(fp8ToSbyte1.Equals(0));
-            var fp8ToSbyte2 = (sbyte)new FixedPoint8(-12_800_000_000);
-            Assert.IsTrue(fp8ToSbyte2.Equals(-128));
-            var fp8ToSbyte3 = (sbyte)new FixedPoint8(12_700_000_000);
-            Assert.IsTrue(fp8ToSbyte3.Equals(127));
-            var fp8ToSbyte4 = (sbyte)new FixedPoint8(120_000_000);
-            Assert.IsTrue(fp8ToSbyte4.Equals(1));
-            var fp8ToSbyte5 = (sbyte)new FixedPoint8(-120_000_000);
-            Assert.IsTrue(fp8ToSbyte5.Equals(-1));
+            ////sbyteCast
+            //var fp8ToSbyte1 = (sbyte)new FixedPoint8(0);
+            //Assert.IsTrue(fp8ToSbyte1.Equals(0));
+            //var fp8ToSbyte2 = (sbyte)new FixedPoint8(-12_800_000_000);
+            //Assert.IsTrue(fp8ToSbyte2.Equals(-128));
+            //var fp8ToSbyte3 = (sbyte)new FixedPoint8(12_700_000_000);
+            //Assert.IsTrue(fp8ToSbyte3.Equals(127));
+            //var fp8ToSbyte4 = (sbyte)new FixedPoint8(120_000_000);
+            //Assert.IsTrue(fp8ToSbyte4.Equals(1));
+            //var fp8ToSbyte5 = (sbyte)new FixedPoint8(-120_000_000);
+            //Assert.IsTrue(fp8ToSbyte5.Equals(-1));
 
-            //byteCast
-            var fp8ToByte1 = (byte)new FixedPoint8(0);
-            Assert.IsTrue(fp8ToByte1.Equals(0));
-            var fp8ToByte2 = (byte)new FixedPoint8(25_500_000_000);
-            Assert.IsTrue(fp8ToByte2.Equals(255));
-            var fp8ToByte3 = (byte)new FixedPoint8(150_000_000);
-            Assert.IsTrue(fp8ToByte3.Equals(1));
+            ////byteCast
+            //var fp8ToByte1 = (byte)new FixedPoint8(0);
+            //Assert.IsTrue(fp8ToByte1.Equals(0));
+            //var fp8ToByte2 = (byte)new FixedPoint8(25_500_000_000);
+            //Assert.IsTrue(fp8ToByte2.Equals(255));
+            //var fp8ToByte3 = (byte)new FixedPoint8(150_000_000);
+            //Assert.IsTrue(fp8ToByte3.Equals(1));
 
             //FixedPoint8Cast
-            short s = 32767;
-            ushort us = 65535;
-            byte b = 255;
-            sbyte sb = 127;
+            //short s = 32767;
+            //ushort us = 65535;
+            //byte b = 255;
+            //sbyte sb = 127;
 
-            var doubleToFp8 = (FixedPoint8)0.01d;
-            Assert.IsTrue(doubleToFp8.Equals(new FixedPoint8(1_000_000)));
-            var decimalToFp8 = (FixedPoint8)0.01m;
-            Assert.IsTrue(decimalToFp8.Equals(new FixedPoint8(1_000_000)));
-            var floatToFp8 = (FixedPoint8)0.01f;
-            Assert.IsTrue(floatToFp8.Equals(new FixedPoint8(1_000_000)));
-            var intToFp8 = (FixedPoint8)12345;
-            Assert.IsTrue(intToFp8.Equals(new FixedPoint8(1_234_500_000_000)));
-            var uintToFp8 = (FixedPoint8)12345u;
-            Assert.IsTrue(uintToFp8.Equals(new FixedPoint8(1_234_500_000_000)));
-            var longToFp8 = (FixedPoint8)12345L;
-            Assert.IsTrue(longToFp8.Equals(new FixedPoint8(1_234_500_000_000)));
-            var ulongToFp8 = (FixedPoint8)12345ul;
-            Assert.IsTrue(ulongToFp8.Equals(new FixedPoint8(1_234_500_000_000)));
-            var shortToFp8 = (FixedPoint8)s;
-            Assert.IsTrue(shortToFp8.Equals(new FixedPoint8(3_276_700_000_000)));
-            var ushortToFp8 = (FixedPoint8)us;
-            Assert.IsTrue(ushortToFp8.Equals(new FixedPoint8(6_553_500_000_000)));
-            var byteToFp8 = (FixedPoint8)b;
-            Assert.IsTrue(byteToFp8.Equals(new FixedPoint8(25_500_000_000)));
-            var sbyteToFp8 = (FixedPoint8)sb;
-            Assert.IsTrue(sbyteToFp8.Equals(new FixedPoint8(12_700_000_000)));
+            //var doubleToFp8 = (FixedPoint8)0.01d;
+            //Assert.IsTrue(doubleToFp8.Equals(new FixedPoint8(1_000_000)));
+            //var decimalToFp8 = (FixedPoint8)0.01m;
+            //Assert.IsTrue(decimalToFp8.Equals(new FixedPoint8(1_000_000)));
+            //var floatToFp8 = (FixedPoint8)0.01f;
+            //Assert.IsTrue(floatToFp8.Equals(new FixedPoint8(1_000_000)));
+            //var intToFp8 = (FixedPoint8)12345;
+            //Assert.IsTrue(intToFp8.Equals(new FixedPoint8(1_234_500_000_000)));
+            //var uintToFp8 = (FixedPoint8)12345u;
+            //Assert.IsTrue(uintToFp8.Equals(new FixedPoint8(1_234_500_000_000)));
+            //var longToFp8 = (FixedPoint8)12345L;
+            //Assert.IsTrue(longToFp8.Equals(new FixedPoint8(1_234_500_000_000)));
+            //var ulongToFp8 = (FixedPoint8)12345ul;
+            //Assert.IsTrue(ulongToFp8.Equals(new FixedPoint8(1_234_500_000_000)));
+            //var shortToFp8 = (FixedPoint8)s;
+            //Assert.IsTrue(shortToFp8.Equals(new FixedPoint8(3_276_700_000_000)));
+            //var ushortToFp8 = (FixedPoint8)us;
+            //Assert.IsTrue(ushortToFp8.Equals(new FixedPoint8(6_553_500_000_000)));
+            //var byteToFp8 = (FixedPoint8)b;
+            //Assert.IsTrue(byteToFp8.Equals(new FixedPoint8(25_500_000_000)));
+            //var sbyteToFp8 = (FixedPoint8)sb;
+            //Assert.IsTrue(sbyteToFp8.Equals(new FixedPoint8(12_700_000_000)));
 
-            var mDoubleToFp8 = (FixedPoint8)(-0.01d);
-            Assert.IsTrue(mDoubleToFp8.Equals(new FixedPoint8(-1_000_000)));
-            var mDecimalToFp8 = (FixedPoint8)(-0.01m);
-            Assert.IsTrue(mDecimalToFp8.Equals(new FixedPoint8(-1_000_000)));
-            var mFloatToFp8 = (FixedPoint8)(-0.01f);
-            Assert.IsTrue(mFloatToFp8.Equals(new FixedPoint8(-1_000_000)));
-            var mIntToFp8 = (FixedPoint8)(-12345);
-            Assert.IsTrue(mIntToFp8.Equals(new FixedPoint8(-1_234_500_000_000)));
-            var mLongToFp8 = (FixedPoint8)(-12345L);
-            Assert.IsTrue(mLongToFp8.Equals(new FixedPoint8(-1_234_500_000_000)));
-            var mShortToFp8 = (FixedPoint8)(-s);
-            Assert.IsTrue(mShortToFp8.Equals(new FixedPoint8(-3_276_700_000_000)));
-            var mSbyteToFp8 = (FixedPoint8)(-sb);
-            Assert.IsTrue(mSbyteToFp8.Equals(new FixedPoint8(-12_700_000_000)));
-        }
+            //var mDoubleToFp8 = (FixedPoint8)(-0.01d);
+            //Assert.IsTrue(mDoubleToFp8.Equals(new FixedPoint8(-1_000_000)));
+            //var mDecimalToFp8 = (FixedPoint8)(-0.01m);
+            //Assert.IsTrue(mDecimalToFp8.Equals(new FixedPoint8(-1_000_000)));
+            //var mFloatToFp8 = (FixedPoint8)(-0.01f);
+            //Assert.IsTrue(mFloatToFp8.Equals(new FixedPoint8(-1_000_000)));
+            //var mIntToFp8 = (FixedPoint8)(-12345);
+            //Assert.IsTrue(mIntToFp8.Equals(new FixedPoint8(-1_234_500_000_000)));
+            //var mLongToFp8 = (FixedPoint8)(-12345L);
+            //Assert.IsTrue(mLongToFp8.Equals(new FixedPoint8(-1_234_500_000_000)));
+            //var mShortToFp8 = (FixedPoint8)(-s);
+            //Assert.IsTrue(mShortToFp8.Equals(new FixedPoint8(-3_276_700_000_000)));
+            //var mSbyteToFp8 = (FixedPoint8)(-sb);
+            //Assert.IsTrue(mSbyteToFp8.Equals(new FixedPoint8(-12_700_000_000)));
+        //}
 
 
         [TestMethod()]
