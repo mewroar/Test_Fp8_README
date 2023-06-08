@@ -453,7 +453,7 @@ public readonly struct FixedPoint8 : INumber<FixedPoint8>
 
     public static explicit operator int(FixedPoint8 value)
     {
-        return ((int)value._innerValue / InnerPower);
+        return (int)(value._innerValue / InnerPower);
     }
 
     public static explicit operator uint(FixedPoint8 value)
